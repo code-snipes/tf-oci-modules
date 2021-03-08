@@ -1,0 +1,26 @@
+#cloud-config
+output:
+    init:
+      output: "> /var/log/cloud-init.out"
+      error: "> /var/log/cloud-init.err"
+    config: "tee -a /var/log/cloud-config.log"
+    final:
+      - ">> /var/log/cloud-final.out"
+      - "/var/log/cloud-final.err"
+package_upgrade: ${instance_upgrade}
+packages:
+  - python3
+  - git
+  - curl
+  - wget
+  - telent
+timezone: ${timezone}
+write_files:
+  - path: "/root/instance.sh"
+    permissions: "0700"
+    encoding: "gzip+base64"
+    content: |
+      ${instance_sh_content}
+runcmd:
+ - bash /root/instance.sh
+ - touch /home/opc/instance.finish

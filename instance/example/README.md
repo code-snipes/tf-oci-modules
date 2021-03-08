@@ -14,7 +14,7 @@ locals {
 
 }
 
-module "webserver" {
+module "server" {
   source = "git@github.com:code-snipes/tf-oci-modules.git//instance"
   count                        = local.server_instance_count
   instance_enabled             = local.server_enabled
