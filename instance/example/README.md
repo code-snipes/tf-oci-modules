@@ -18,7 +18,7 @@ module "server" {
   source = "git@github.com:code-snipes/tf-oci-modules.git//instance"
   count                        = local.server_instance_count
   instance_enabled             = local.server_enabled
-  instance_tenancy_ocid        = local.tenancy_ocid
+  instance_tenancy_ocid        = var.tenancy_ocid
   instance_label_prefix        = "${local.label_prefix}-${local.server_prefix}"
   instance_label_postfix       = "${count.index + 1}-${local.label_postfix}"
   instance_compartment_id      = "YourCompartment_OCID"
