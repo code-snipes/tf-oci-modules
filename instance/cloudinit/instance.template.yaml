@@ -1,0 +1,16 @@
+#cloud-config
+package_upgrade: ${instance_upgrade}
+packages:
+  - python3
+timezone: ${timezone}
+write_files:
+# setup script
+  - path: "/root/instance/instance.sh"
+    permissions: "0700"
+    encoding: "gzip+base64"
+    content: |
+      ${instance_sh_content}
+runcmd:
+ - echo "Configuring instance..."
+ - bash /root/instance/instance.sh
+ - touch /home/opc/instance.finish
