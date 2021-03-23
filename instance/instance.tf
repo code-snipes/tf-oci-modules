@@ -11,7 +11,7 @@ resource "oci_core_instance" "instance" {
 
   create_vnic_details {
     assign_public_ip = false
-    display_name     = var.instance_label_prefix == "none" ? "vnic-instance" : "${var.instance_label_prefix}-vnic-${var.instance_label_postfix}"
+    display_name     = var.instance_label_prefix == "none" ? "vm-instance" : "${var.instance_label_prefix}-${var.instance_label_postfix}"
     nsg_ids          = var.instance_nsg_ids
     subnet_id        = var.instance_subnet_id
   }
