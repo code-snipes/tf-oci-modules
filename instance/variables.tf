@@ -71,10 +71,10 @@ variable "instance_instance_principal" {
 
 variable "instance_shape" {
   description = "The shape of the instance instance."
-  default     = {
-   shape = "VM.Standard.E3.Flex", ocpus = 1, memory = 4, boot_volume_size = 50
+  default = {
+    shape = "VM.Standard.E3.Flex", ocpus = 1, memory = 4, boot_volume_size = 50
   }
-  type        = map(any)
+  type = map(any)
 }
 
 variable "instance_upgrade" {
@@ -114,3 +114,14 @@ variable "instance_cloud_init_file" {
   type        = string
 }
 
+variable "operating_system" {
+  description = "Customize Operationg System for the Instance"
+  default     = "Oracle Linux"
+  type        = string
+}
+
+variable "operating_system_version " {
+  description = "Customize Operationg System version for the Instance"
+  default     = "7.9"
+  type        = string
+}

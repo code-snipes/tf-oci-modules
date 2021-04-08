@@ -28,7 +28,7 @@ data "template_file" "oracle_instance_template" {
 
   template = var.instance_template_script == "none" ? file("${path.module}/scripts/instance.template.sh") : file(var.instance_template_script)
 
-  count = (var.instance_enabled == true && var.instance_image_id == "Oracle") ? 1 : 0
+  count = var.instance_enabled == true ? 1 : 0
 }
 
 data "template_file" "oracle_cloud_init_file" {
@@ -42,14 +42,13 @@ data "template_file" "oracle_cloud_init_file" {
     timezone            = var.instance_timezone
   }
 
-  # count = (var.instance_enabled == true && var.instance_image_id == "Oracle") ? 1 : 0
-  count = var.instance_enabled == true ? 1 : 0
+  count = (var.instance_enabled == true && var.instance_image_id == "Oracle") ? 1 : 0
 }
 
 data "oci_core_images" "oracle_images" {
   compartment_id           = var.instance_compartment_id
-  operating_system         = "Oracle Linux"
-  operating_system_version = "7.9"
+  operating_system         = var.operating_system
+  operating_system_version = var.operating_system_version
   shape                    = lookup(var.instance_shape, "shape", "VM.Standard.E2.2")
   sort_by                  = "TIMECREATED"
 }
