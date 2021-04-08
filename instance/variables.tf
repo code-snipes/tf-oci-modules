@@ -120,7 +120,7 @@ variable "instance_operating_system" {
   type        = string
 }
 
-variable "instance_operating_system_version " {
+variable "instance_operating_system_version" {
   description = "Customize Operationg System version for the Instance"
   default     = "7.9"
   type        = string
