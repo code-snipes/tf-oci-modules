@@ -114,13 +114,13 @@ variable "instance_cloud_init_file" {
   type        = string
 }
 
-variable "operating_system" {
+variable "instance_operating_system" {
   description = "Customize Operationg System for the Instance"
   default     = "Oracle Linux"
   type        = string
 }
 
-variable "operating_system_version " {
+variable "instance_operating_system_version " {
   description = "Customize Operationg System version for the Instance"
   default     = "7.9"
   type        = string

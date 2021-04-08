@@ -47,8 +47,8 @@ data "template_file" "oracle_cloud_init_file" {
 
 data "oci_core_images" "oracle_images" {
   compartment_id           = var.instance_compartment_id
-  operating_system         = var.operating_system
-  operating_system_version = var.operating_system_version
+  operating_system         = var.instance_operating_system
+  operating_system_version = var.instance_operating_system_version
   shape                    = lookup(var.instance_shape, "shape", "VM.Standard.E2.2")
   sort_by                  = "TIMECREATED"
 }
