@@ -34,7 +34,7 @@ data "template_file" "oracle_instance_template" {
 data "template_file" "oracle_cloud_init_file" {
   #template = file("${path.module}/cloudinit/instance.template.yaml")
 
-  template = var.instance_cloud_init_file == "none" ? file("${path.module}/cloudinit/instance.template.yaml") : file(var.instance_cloud_init_file)
+  template = var.instance_cloud_init_file == "none" && var.instance_image_id == "Oracle" ? file("${path.module}/cloudinit/instance.template.yaml") : file(var.instance_cloud_init_file)
 
   vars = {
     instance_sh_content = base64gzip(data.template_file.oracle_instance_template[0].rendered)
@@ -42,7 +42,7 @@ data "template_file" "oracle_cloud_init_file" {
     timezone            = var.instance_timezone
   }
 
-  count = (var.instance_enabled == true && var.instance_image_id == "Oracle") ? 1 : 0
+  count = var.instance_enabled == true ? 1 : 0
 }
 
 data "oci_core_images" "oracle_images" {
