@@ -42,7 +42,8 @@ data "template_file" "oracle_cloud_init_file" {
     timezone            = var.instance_timezone
   }
 
-  count = (var.instance_enabled == true && var.instance_image_id == "Oracle") ? 1 : 0
+  # count = (var.instance_enabled == true && var.instance_image_id == "Oracle") ? 1 : 0
+  count = var.instance_enabled == true ? 1 : 0
 }
 
 data "oci_core_images" "oracle_images" {
