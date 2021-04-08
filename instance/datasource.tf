@@ -63,7 +63,8 @@ data "template_cloudinit_config" "instance" {
     content_type = "text/cloud-config"
     content      = data.template_file.oracle_cloud_init_file[0].rendered
   }
-  count = var.instance_enabled == true ? 1 : 0
+  # count = var.instance_enabled == true ? 1 : 0
+  count = (var.instance_enabled == true && var.instance_image_id == "Oracle") ? 1 : 0
 }
 
 # Gets a list of VNIC attachments on the instance instance
