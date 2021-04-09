@@ -101,7 +101,6 @@ variable "instance_timezone" {
   type        = string
 }
 
-
 variable "instance_template_script" {
   description = "Customization Script for the Instance"
   default     = "none"
@@ -125,3 +124,10 @@ variable "instance_operating_system_version" {
   default     = "7.9"
   type        = string
 }
+
+variable "instance_ip" {
+  description = "The IP addess of a depending host if necessary for the cloud-init script."
+  default     = "0.0.0.0"
+  type        = string
+}
+

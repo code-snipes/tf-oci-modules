@@ -28,6 +28,10 @@ data "template_file" "oracle_instance_template" {
 
   template = var.instance_template_script == "none" ? file("${path.module}/scripts/instance.template.sh") : file(var.instance_template_script)
 
+  vars = {
+    ip = var.instance_ip
+  }
+
   count = var.instance_enabled == true ? 1 : 0
 }
 
